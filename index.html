@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Envento — Event Management Club, IIIT Vadodara Gandhinagar</title>
+    <meta
+      name="description"
+      content="Envento is the event management club of IIIT Vadodara, Gandhinagar Campus. See upcoming events, past events, and how to join."
+    />
+    <link rel="icon" href="favicon.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta property="og:title" content="Envento — Event Management Club" />
+    <meta
+      property="og:description"
+      content="Upcoming campus events, fests, and how to join Envento."
+    />
+    <meta property="og:image" content="favicon.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+
+    <header class="site-header">
+      <a href="#hero" class="logo">Envento</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="primary-navigation" aria-label="Primary" class="main-nav nav-links">
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#join">Join</a>
+      </nav>
+      <span class="hidden-on-load">This is hidden with display: none.</span>
+    </header>
+
+    <main id="main" class="page-content">
+      <section id="hero" class="hero">
+        <h1>Envento</h1>
+        <p>
+          Event Management Club, <span lang="hi">IIIT Vadodara</span> —
+          Gandhinagar Campus.
+        </p>
+        <p>We plan and run events across campus, from technical fests to cultural nights.</p>
+        <a href="#events" class="button">See upcoming events</a>
+
+        
+          <p>48 events run since 2022.</p>
+          <p>200+ active volunteers.</p>
+      </section>
+
+      <section id="events" class="events-section">
+        <h2>Upcoming Events</h2>
+        <ul>
+          <li>
+            <article>
+              <h3>Technova</h3>
+              <p>A technical event for coders, builders and makers.</p>
+              <p>
+                <time datetime="2026-09-12">12 September 2026</time> ·
+                Main Auditorium
+              </p>
+              <p><mark>Registration open</mark></p>
+              <a href="event-technova.html">View event</a>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>Echoes</h3>
+              <p>A cultural night of music and performance.</p>
+              <p>
+                <time datetime="2026-09-20">20 September 2026</time> ·
+                Open Air Stage
+              </p>
+              <p>Registration opens soon.</p>
+              <a href="event-echoes.html">View event</a>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>Athena</h3>
+              <p>An inter-college competition testing strategy and speed.</p>
+              <p>
+                <time datetime="2026-10-04">4 October 2026</time> ·
+                Seminar Hall
+              </p>
+              <p><mark>Registration open</mark></p>
+              <a href="event-athena.html">View event</a>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section id="gallery" class="gallery">
+        <h2>From the Archive</h2>
+        <figure>
+          <img
+            src="favicon.jpg"
+            alt="A white kitten standing in a grassy field"
+          />
+          <figcaption>A white kitten in the grass</figcaption>
+        </figure>
+      </section>
+
+      <section id="about" class="about">
+        <h2>About Envento</h2>
+        <p>
+          Envento is the event management club of
+          <abbr title="Indian Institute of Information Technology Vadodara">IIIT Vadodara</abbr>,
+          Gandhinagar Campus. We plan, coordinate and run events for the
+          student community.
+        </p>
+        <p>
+          The club's work is summarised each year in the
+          <cite>Envento Annual Report</cite>.
+        </p>
+
+        <h3>Frequently Asked Questions</h3>
+        <details>
+          <summary>Who can join Envento?</summary>
+          <p>Any student at IIIT Vadodara, Gandhinagar Campus, can join. No prior experience is required.</p>
+        </details>
+        <details>
+          <summary>How do I register for an event?</summary>
+          <p>
+            Use the <kbd>Register</kbd> button on each event page, or fill
+            out the join form below.
+          </p>
+        </details>
+      </section>
+
+      <section id="team" class="team">
+        <h2>Team</h2>
+        <ul>
+          <li>Aarohi Shah — President</li>
+          <li>Ritvik Mehta — Vice President</li>
+          <li>Devika Nair — Event Head</li>
+        </ul>
+      </section>
+
+      <section id="join" class="join-section">
+        <h2>Join Envento</h2>
+        <p>Fill in your details and we will get in touch.</p>
+        <form>
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="date">Preferred date</label>
+          <input type="date" id="date" name="date" />
+
+          <label for="interest">Which team interests you?</label>
+          <select id="interest" name="interest">
+            <option value="technical">Technical</option>
+            <option value="cultural">Cultural</option>
+            <option value="operations">Operations</option>
+          </select>
+
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" placeholder="Tell us what you are interested in..."></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Envento — IIIT Vadodara</p>
+      <nav aria-label="Footer" class="footer-links">
+        <a href="#events" class="active">Events</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+      </nav>
+
+      <table class="event-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Month</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Technova</td>
+            <td>September</td>
+          </tr>
+          <tr>
+            <td>Echoes</td>
+            <td>September</td>
+          </tr>
+          <tr>
+            <td>Athena</td>
+            <td>October</td>
+          </tr>
+        </tbody>
+      </table>
+      <address>
+        Contact us at
+        <a href="mailto:envento@iiitvadodara.ac.in"><code>envento@iiitvadodara.ac.in</code></a>
+        <br />
+        <a href="https://iiitvadodara.ac.in" target="_blank" rel="noreferrer">Visit IIIT Vadodara</a>
+      </address>
+    </footer>
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const primaryNavigation = document.querySelector("#primary-navigation");
+
+      function closeNavigation() {
+        navToggle.setAttribute("aria-expanded", "false");
+        primaryNavigation.classList.remove("is-open");
+      }
+
+      navToggle.addEventListener("click", () => {
+        const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
+        navToggle.setAttribute("aria-expanded", String(!isExpanded));
+        primaryNavigation.classList.toggle("is-open", !isExpanded);
+      });
+
+      primaryNavigation.addEventListener("click", (event) => {
+        if (event.target.closest("a")) closeNavigation();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeNavigation();
+      });
+    </script>
+  </body>
+</html>
