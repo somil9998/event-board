@@ -1,0 +1,102 @@
+Box-sizing example:
+
+If an element has:
+- width: 200px
+- padding: 20px
+- border: 10px
+
+Without box-sizing: border-box
+- total rendered width = 200 + 20 + 20 + 10 + 10 = 260px
+
+With box-sizing: border-box
+- total rendered width stays 200px
+- content area becomes 140px
+
+This makes element sizing more predictable.
+
+Grid note: auto-fit + minmax(15rem, 1fr) creates as many columns as fit while keeping each card at least 15rem wide and sharing the remaining space.
+
+Example box sizing comparison:
+
+If an element is styled as:
+
+- width: 200px
+- padding: 20px
+- border: 10px
+
+Then the rendered box width is:
+
+- Without box-sizing: border-box
+  - total width = 200px + 20px + 20px + 10px + 10px = 260px
+- With box-sizing: border-box
+  - total width stays 200px
+  - content box becomes 200px - 20px - 20px - 10px - 10px = 140px
+
+This is why border-box makes layout sizing more predictable.
+
+Responsive checks and screenshots
+
+- Mobile screenshot: screenshot-mobile.png (390 x 844, full page)
+- Desktop screenshot: screenshot-desktop.png (1280 x 900, full page)
+- Mobile navigation starts closed, opens from the menu button, and closes with Escape or a navigation link.
+- Desktop navigation is visible and the menu button is hidden at 1280px.
+- Desktop uses a single body grid column, keeping the main content and hero centered instead of reserving an empty sidebar.
+- Archive photo loads from favicon.jpg; its alt text and caption describe the kitten shown.
+
+Latest viewport test (2026-09-26)
+
+- Phone capture: responsive-phone.png (390 x 900)
+- Desktop capture: responsive-desktop.png (1440 x 900)
+- At 390px, the 40rem and 64rem media queries are off; hamburger nav is shown and events use one column.
+- At 768px, the 40rem query is on; full nav is shown and events use two columns.
+- At 1440px, both queries are on; full nav is shown and events use three columns.
+
+Event-board assignment answers
+
+1. The :root palette and design tokens are:
+
+  --brand: #2c3e50;
+  --brand-deep: #1a252f;
+  --brand-soft: #546e7a;
+  --accent: #ffe08a;
+  --accent-strong: #f39c12;
+  --accent-soft: rgba(243, 156, 18, 0.2);
+  --ink: rgb(34 34 34);
+  --ink-soft: hsl(0 0% 33%);
+  --paper: rgb(255 255 255);
+  --paper-alt: #f4f4f4;
+  --paper-muted: #f9fafb;
+  --line: #eeeeee;
+  --line-strong: hsl(210 27% 81%);
+  --field-bg: #f9fbff;
+  --link-visited: rgb(84 110 122);
+  --link-active: #b94c00;
+  --focus: hsl(38 90% 50%);
+  --banner-overlay: rgb(0 0 0 / 40%);
+
+  Named variables make colors consistent, communicate intent (for example, --paper versus --ink), and allow a palette change in one place instead of searching for repeated hex codes.
+
+2. Hex example: #2c3e50 is the brand/nav color. RGB example: rgb(34 34 34) is the main ink color. HSL example: hsl(0 0% 33%) is muted text. Semi-transparent colors include --accent-soft at 20% opacity for focus rings, and --banner-overlay at 40% opacity for the dark hero image overlay; transparency lets the underlying color/image show through.
+
+3. rem units scale from the root font size, preserving proportional spacing and type when a user changes their default text size. The main-width calculation is width: min(calc(100% - 2rem), 60rem); it leaves 1rem gutters on both sides until the content reaches its 60rem cap. The heading uses font-size: clamp(1.5rem, 4vw, 3rem); it grows with viewport width but stays between readable minimum and maximum sizes.
+
+4. With content-box, rendered width is 200 + 20 + 20 + 5 + 5 = 250px. With border-box, rendered width remains 200px and the content area is 150px. The stylesheet applies box-sizing: border-box globally so declared dimensions include padding and borders and are easier to reason about.
+
+5. From inside out: content, padding, border, margin.
+
+6. repeat(auto-fit, minmax(15rem, 1fr)) creates as many event-card columns as fit, with each track at least 15rem and available extra space shared evenly. Auto-fit and minmax calculate the track count from available space, so this grid adapts without a media query.
+
+7. Mobile-first CSS sets the simplest phone layout as the default, then min-width queries progressively add columns and desktop navigation as space becomes available. It avoids overriding a desktop-first layout on small screens. The viewport meta tag, <meta name="viewport" content="width=device-width, initial-scale=1" />, makes the CSS viewport match the device width and prevents mobile browsers from rendering a wide virtual page and shrinking it.
+
+8. The page grid-template-areas map is:
+
+  "header"
+  "nav"
+  "main"
+  "footer"
+
+  Each row has one column, so no region spans multiple columns in the final centered layout. In a multi-column map, a region spans columns by repeating its area name in adjacent tracks (for example, "header header"); this page has no sidebar requiring that arrangement.
+
+9. Images use max-width: 100% and height: auto, so they shrink within their container without distortion and need no media query. Type uses clamp(), which fluidly scales headings between fixed minimum and maximum sizes without a media query.
+
+10. Repository: https://github.com/somil9998/event-board. GitHub Pages: https://somil9998.github.io/event-board/. The public repository already had README.md and a readable two-commit history when checked; this content update adds a separate descriptive commit. The final index.html and style.css are in the repository. README.md documents the static site, files, responsive behavior, and Pages deployment.

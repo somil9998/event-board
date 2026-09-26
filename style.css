@@ -301,7 +301,7 @@ h2 ~ p {
 
 main {
   grid-area: main;
-  width: min(90%, 60rem);
+  width: min(calc(100% - 2rem), 60rem);
   margin: 0 auto;
   padding: 1rem 2rem 3rem 2rem;
 }
