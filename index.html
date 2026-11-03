@@ -39,59 +39,46 @@
 
     <main id="main" class="page-content">
       <section id="hero" class="hero">
-        <h1>Envento</h1>
-        <p>
-          Event Management Club, <span lang="hi">IIIT Vadodara</span> —
-          Gandhinagar Campus.
-        </p>
-        <p>We plan and run events across campus, from technical fests to cultural nights.</p>
-        <a href="#events" class="button">See upcoming events</a>
+        <div class="hero-content">
+          <p class="eyebrow">Campus life, powered by creativity</p>
+          <h1>Envento</h1>
+          <p class="hero-intro">
+            Event Management Club, <span lang="hi">IIIT Vadodara</span> —
+            Gandhinagar Campus.
+          </p>
+          <p>We plan and run events across campus, from technical fests to cultural nights.</p>
+          <div class="hero-actions">
+            <a href="#events" class="button primary">See upcoming events</a>
+            <a href="#join" class="button secondary">Become a volunteer</a>
+          </div>
+        </div>
 
-        
-          <p>48 events run since 2022.</p>
-          <p>200+ active volunteers.</p>
+        <div class="hero-stats" aria-label="Club statistics">
+          <div class="stat-card">
+            <strong>48+</strong>
+            <span>events since 2022</span>
+          </div>
+          <div class="stat-card">
+            <strong>200+</strong>
+            <span>active volunteers</span>
+          </div>
+          <div class="stat-card">
+            <strong>12</strong>
+            <span>campus initiatives</span>
+          </div>
+        </div>
       </section>
 
       <section id="events" class="events-section">
         <h2>Upcoming Events</h2>
-        <ul>
-          <li>
-            <article>
-              <h3>Technova</h3>
-              <p>A technical event for coders, builders and makers.</p>
-              <p>
-                <time datetime="2026-09-12">12 September 2026</time> ·
-                Main Auditorium
-              </p>
-              <p><mark>Registration open</mark></p>
-              <a href="event-technova.html">View event</a>
-            </article>
-          </li>
-          <li>
-            <article>
-              <h3>Echoes</h3>
-              <p>A cultural night of music and performance.</p>
-              <p>
-                <time datetime="2026-09-20">20 September 2026</time> ·
-                Open Air Stage
-              </p>
-              <p>Registration opens soon.</p>
-              <a href="event-echoes.html">View event</a>
-            </article>
-          </li>
-          <li>
-            <article>
-              <h3>Athena</h3>
-              <p>An inter-college competition testing strategy and speed.</p>
-              <p>
-                <time datetime="2026-10-04">4 October 2026</time> ·
-                Seminar Hall
-              </p>
-              <p><mark>Registration open</mark></p>
-              <a href="event-athena.html">View event</a>
-            </article>
-          </li>
-        </ul>
+        <label for="event-search">Search events</label>
+        <input
+          type="search"
+          id="event-search"
+          name="event-search"
+          placeholder="Search by name, details, or venue"
+        />
+        <ul id="event-list"></ul>
       </section>
 
       <section id="gallery" class="gallery">
@@ -144,12 +131,18 @@
       <section id="join" class="join-section">
         <h2>Join Envento</h2>
         <p>Fill in your details and we will get in touch.</p>
-        <form>
+        <form id="join-form" novalidate>
           <label for="name">Full name</label>
           <input type="text" id="name" name="name" required />
 
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+            required
+          />
 
           <label for="date">Preferred date</label>
           <input type="date" id="date" name="date" />
@@ -165,6 +158,7 @@
           <textarea id="message" name="message" placeholder="Tell us what you are interested in..."></textarea>
 
           <button type="submit">Send</button>
+          <p id="form-message" role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
@@ -184,20 +178,7 @@
             <th>Month</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Technova</td>
-            <td>September</td>
-          </tr>
-          <tr>
-            <td>Echoes</td>
-            <td>September</td>
-          </tr>
-          <tr>
-            <td>Athena</td>
-            <td>October</td>
-          </tr>
-        </tbody>
+        <tbody id="event-summary"></tbody>
       </table>
       <address>
         Contact us at
@@ -206,28 +187,6 @@
         <a href="https://iiitvadodara.ac.in" target="_blank" rel="noreferrer">Visit IIIT Vadodara</a>
       </address>
     </footer>
-    <script>
-      const navToggle = document.querySelector(".nav-toggle");
-      const primaryNavigation = document.querySelector("#primary-navigation");
-
-      function closeNavigation() {
-        navToggle.setAttribute("aria-expanded", "false");
-        primaryNavigation.classList.remove("is-open");
-      }
-
-      navToggle.addEventListener("click", () => {
-        const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
-        navToggle.setAttribute("aria-expanded", String(!isExpanded));
-        primaryNavigation.classList.toggle("is-open", !isExpanded);
-      });
-
-      primaryNavigation.addEventListener("click", (event) => {
-        if (event.target.closest("a")) closeNavigation();
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeNavigation();
-      });
-    </script>
+    <script src="script.js" defer></script>
   </body>
 </html>

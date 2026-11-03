@@ -8,9 +8,12 @@ https://somil9998.github.io/event-board/
 
 ## Files
 
-- `index.html` contains the page content, accessible navigation, events, archive, team, and join form.
-- `style.css` contains the palette, typography, box model, mobile-first grid, and responsive breakpoints.
+- `index.html` contains the page structure, accessible navigation, event search, archive, team, and join form.
+- `style.css` contains the palette, typography, responsive layouts, and event-state styling.
+- `script.js` loads event data, renders event cards, and handles search, RSVP, navigation, and form validation.
+- `events.json` is the event data source used by the page.
 - `favicon.jpg` is the image asset used by the page.
+- `notes.txt` contains assignment notes and an appendix with the final `script.js`.
 
 ## Responsive behavior
 
@@ -18,8 +21,14 @@ The page starts with a compact, one-column phone layout. At 40rem, the event lis
 
 ## Run locally
 
-Open `index.html` in a browser. No build step or package installation is required.
+From this folder, start a local web server:
+
+```powershell
+py -m http.server 8765
+```
+
+Then open http://localhost:8765/ in a browser. The page fetches `events.json`, so opening `index.html` directly as a `file://` URL will prevent the browser from loading event data. No build step or package installation is required.
 
 ## GitHub Pages
 
-The site is published from the repository's `main` branch. Pushing updates to `index.html` or `style.css` republishes the site automatically.
+The site is published from the repository's `main` branch. Pushing updates to the site files republishes it automatically. GitHub Pages serves the page over HTTP, so it can load `events.json`.

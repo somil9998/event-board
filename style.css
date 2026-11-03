@@ -429,6 +429,15 @@ footer address {
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
 }
 
+.events-section .event-card.full {
+  border-left: 0.25rem solid var(--link-active);
+  padding-left: 0.75rem;
+}
+
+.event-seat-status {
+  font-weight: 700;
+}
+
 .team li {
   padding: 0.25rem 0;
 }
