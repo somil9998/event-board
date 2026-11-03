@@ -78,6 +78,9 @@
           name="event-search"
           placeholder="Search by name, details, or venue"
         />
+        <p id="xml-event-title" role="status" aria-live="polite">
+          Loading first event from events.xml…
+        </p>
         <ul id="event-list"></ul>
       </section>
 
@@ -187,6 +190,46 @@
         <a href="https://iiitvadodara.ac.in" target="_blank" rel="noreferrer">Visit IIIT Vadodara</a>
       </address>
     </footer>
+    <script id="embedded-events" type="application/json">
+      [
+        {
+          "id": "technova",
+          "title": "Technova",
+          "date": "2026-09-12",
+          "seats": 120,
+          "free": true,
+          "online": false,
+          "description": "A technical event for coders, builders and makers.",
+          "venue": "Main Auditorium",
+          "registrationOpen": true,
+          "href": "event-technova.html"
+        },
+        {
+          "id": "echoes",
+          "title": "Echoes",
+          "date": "2026-09-20",
+          "seats": 0,
+          "free": true,
+          "online": false,
+          "description": "A cultural night of music and performance.",
+          "venue": "Open Air Stage",
+          "registrationOpen": false,
+          "href": "event-echoes.html"
+        },
+        {
+          "id": "athena",
+          "title": "Athena",
+          "date": "2026-10-04",
+          "seats": 80,
+          "free": true,
+          "online": false,
+          "description": "An inter-college competition testing strategy and speed.",
+          "venue": "Seminar Hall",
+          "registrationOpen": true,
+          "href": "event-athena.html"
+        }
+      ]
+    </script>
     <script src="script.js" defer></script>
   </body>
 </html>

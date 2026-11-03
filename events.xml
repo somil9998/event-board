@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+  <event id="technova">
+    <title>Technova</title>
+    <date>2026-09-12</date>
+    <seats>120</seats>
+    <free>true</free>
+    <online>false</online>
+    <description>A technical event for coders, builders and makers.</description>
+    <venue>Main Auditorium</venue>
+    <registrationOpen>true</registrationOpen>
+    <href>event-technova.html</href>
+  </event>
+  <event id="echoes">
+    <title>Echoes</title>
+    <date>2026-09-20</date>
+    <seats>0</seats>
+    <free>true</free>
+    <online>false</online>
+    <description>A cultural night of music and performance.</description>
+    <venue>Open Air Stage</venue>
+    <registrationOpen>false</registrationOpen>
+    <href>event-echoes.html</href>
+  </event>
+  <event id="athena">
+    <title>Athena</title>
+    <date>2026-10-04</date>
+    <seats>80</seats>
+    <free>true</free>
+    <online>false</online>
+    <description>An inter-college competition testing strategy and speed.</description>
+    <venue>Seminar Hall</venue>
+    <registrationOpen>true</registrationOpen>
+    <href>event-athena.html</href>
+  </event>
+</events>

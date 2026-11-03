@@ -33,6 +33,7 @@ function renderEvents(events) {
     const title = document.createElement("h3");
     const description = document.createElement("p");
     const details = document.createElement("p");
+    const price = document.createElement("p");
     const seatStatus = document.createElement("mark");
     const registration = document.createElement("p");
     const registrationStatus = document.createElement("mark");
@@ -59,6 +60,7 @@ function renderEvents(events) {
     article.classList.add("event-card");
     article.classList.toggle("full", event.seats === 0);
     article.classList.toggle("online", event.online);
+    listItem.dataset.eventId = event.id;
     seatStatus.classList.add("event-seat-status");
     seatStatus.classList.toggle("full", event.seats === 0);
     seatStatus.classList.toggle("few-left", event.seats > 0 && event.seats < 5);
@@ -80,6 +82,7 @@ function renderEvents(events) {
     title.textContent = event.title;
     description.textContent = event.description;
     details.textContent = event.formattedDetails;
+    price.textContent = event.free ? "Free entry" : "Paid entry";
     seatStatus.textContent = `${availability} — ${event.seats} seats left`;
     registrationStatus.textContent = event.registrationOpen
       ? "Registration open"
@@ -95,6 +98,7 @@ function renderEvents(events) {
     article.appendChild(title);
     article.appendChild(description);
     article.appendChild(details);
+    article.appendChild(price);
     article.appendChild(seatStatus);
     article.appendChild(registration);
     article.appendChild(rsvpButton);
@@ -226,16 +230,45 @@ async function loadEvents() {
   showEventMessage("Loading…");
 
   try {
-    const response = await fetch("events.json");
-    if (!response.ok) {
-      throw new Error(`Failed to load events: ${response.status}`);
+    let sourceText;
+    if (window.location.protocol === "file:") {
+      const embeddedEvents = document.querySelector("#embedded-events");
+      if (!embeddedEvents) {
+        throw new Error("Embedded event data is missing.");
+      }
+      sourceText = embeddedEvents.textContent;
+    } else {
+      const response = await fetch("events.json");
+      if (!response.ok) {
+        throw new Error(`Failed to load events: ${response.status}`);
+      }
+      sourceText = await response.text();
     }
 
-    const events = await response.json();
+    const events = JSON.parse(sourceText);
     if (!Array.isArray(events)) {
       throw new Error("The events data must be an array.");
     }
+    if (events.length === 0) {
+      throw new Error("The events data must contain at least one event.");
+    }
 
+    const serializedEvents = JSON.stringify(events);
+    console.log("JSON.stringify(events):", serializedEvents);
+    const roundTrippedEvents = JSON.parse(serializedEvents);
+    const matchesSource =
+      JSON.stringify(roundTrippedEvents) ===
+      JSON.stringify(JSON.parse(sourceText));
+    console.log(
+      `Round-trip matches ${window.location.protocol === "file:" ? "embedded event data" : "events.json"}:`,
+      matchesSource,
+    );
+    if (!matchesSource) {
+      throw new Error("The JSON round-trip does not match the source data.");
+    }
+
+    console.log("First event title:", events[0].title);
+    console.log("Last event seats:", events[events.length - 1].seats);
     console.log(
       `Loaded ${events.length} events: ${events.map((event) => event.title).join(", ")}`,
     );
@@ -243,9 +276,7 @@ async function loadEvents() {
   } catch (error) {
     console.error("Unable to load event data.", error);
     if (window.location.protocol === "file:") {
-      showEventMessage(
-        "Events cannot load when index.html is opened directly. Run this folder through a local web server to load events.json.",
-      );
+      showEventMessage("We couldn't load the embedded events data.");
     } else {
       showEventMessage(
         "We couldn't load events right now. Please check your connection and try again.",
@@ -254,9 +285,47 @@ async function loadEvents() {
   }
 }
 
+async function loadFirstXmlEventTitle() {
+  const titleMessage = document.querySelector("#xml-event-title");
+
+  try {
+    if (window.location.protocol === "file:") {
+      throw new Error("Open this page through a local web server to load events.xml.");
+    }
+
+    const response = await fetch("events.xml");
+    if (!response.ok) {
+      throw new Error(`Failed to load events.xml: ${response.status}`);
+    }
+
+    const xmlText = await response.text();
+    const xmlDocument = new DOMParser().parseFromString(
+      xmlText,
+      "application/xml",
+    );
+    if (xmlDocument.querySelector("parsererror")) {
+      throw new Error("events.xml contains invalid XML.");
+    }
+
+    const titles = xmlDocument.getElementsByTagName("title");
+    if (titles.length === 0 || !titles[0].textContent.trim()) {
+      throw new Error("events.xml does not contain an event title.");
+    }
+
+    titleMessage.textContent = `First event from XML: ${titles[0].textContent.trim()}`;
+  } catch (error) {
+    console.error("Unable to load the first XML event title.", error);
+    titleMessage.textContent =
+      window.location.protocol === "file:"
+        ? "Run this folder through a local web server to load the first event from events.xml."
+        : "The first event title could not be loaded from events.xml.";
+  }
+}
+
 console.log(
   "Event board initialized. Event data will load from events.json.",
 );
 loadEvents();
+loadFirstXmlEventTitle();
 setupMobileNavigation();
 setupJoinForm();

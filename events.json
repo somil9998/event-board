@@ -1,8 +1,10 @@
 [
   {
+    "id": "technova",
     "title": "Technova",
     "date": "2026-09-12",
     "seats": 120,
+    "free": true,
     "online": false,
     "description": "A technical event for coders, builders and makers.",
     "venue": "Main Auditorium",
@@ -10,9 +12,11 @@
     "href": "event-technova.html"
   },
   {
+    "id": "echoes",
     "title": "Echoes",
     "date": "2026-09-20",
     "seats": 0,
+    "free": true,
     "online": false,
     "description": "A cultural night of music and performance.",
     "venue": "Open Air Stage",
@@ -20,9 +24,11 @@
     "href": "event-echoes.html"
   },
   {
+    "id": "athena",
     "title": "Athena",
     "date": "2026-10-04",
     "seats": 80,
+    "free": true,
     "online": false,
     "description": "An inter-college competition testing strategy and speed.",
     "venue": "Seminar Hall",
